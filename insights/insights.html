@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Insights</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="insights.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    </head>
+    <body>
+        <div id=container>
+            <div class="chart-container">
+                <canvas id="weekChart"></canvas>
+            </div>
+            <br>
+            <div class="chart-container">
+                <canvas id="hourChart"></canvas>
+            </div>
+        </div>
+        
+        <script>
+            var stats = JSON.parse('statsjsondata');
+            
+            var weekStats = [0,0,0,0,0,0,0];
+            for (view in stats){
+                try {
+                    if (stats[view].ip_legit != 'good'){
+                        continue;
+                    }
+                } catch {
+                    alert("in catch, view:"+view);
+                    continue;
+                }
+                dateUnix = new Date(stats[view].time*1000);
+                weekStats[dateUnix.getDay()] += 1;
+            }
+            
+            var hourStats = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            for (view in stats){
+                try {
+                    if (stats[view].ip_legit != 'good'){
+                        continue;
+                    }
+                } catch {
+                    alert("in catch, view:"+view);
+                    continue;
+                }
+                dateUnix = new Date(stats[view].time*1000);
+                hourStats[dateUnix.getHours()] += 1;
+            }
+            
+            var ctx = document.getElementById('weekChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                
+                data: {
+                    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                    datasets: [{
+                        label: 'Visitors per day',
+                        backgroundColor: 'rgb(255, 99, 132, 0.2)',
+                        borderColor: 'rgb(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        data: weekStats
+                    }]
+                },
+                
+                options: {
+                    maintainAspectRatio: false,
+                }
+            });
+            
+            var ctx = document.getElementById('hourChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                
+                data: {
+                    labels: ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM',
+                             '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', 
+                             '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
+                    datasets: [{
+                        label: 'Visitors per hour',
+                        backgroundColor: 'rgb(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        data: hourStats,
+                        fill: false
+                    }]
+                },
+                
+                options: {
+                    maintainAspectRatio: false,
+                }
+            });
+        </script>
+    </body>
+</html>

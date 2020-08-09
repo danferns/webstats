@@ -1,0 +1,15 @@
+body {
+    position: absolute;
+    font-size: 14px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    padding: 0px;
+    margin: 4px;
+}
+
+.chart-container {
+    position: relative; 
+    height: 300px;
+}

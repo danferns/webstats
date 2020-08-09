@@ -1,0 +1,42 @@
+body {
+    position: absolute;
+    font-size: 14px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    padding: 0px;
+    margin: 4px;
+    color: #000;
+}
+
+#container {
+    display: flex;
+    padding-left: 4px;
+    padding-right: 4px;
+    box-sizing: border-box;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+table {
+    font-family: Verdana;
+    margin-bottom: 8px;
+}
+
+caption {
+    padding: 8px;
+    padding-bottom: 12px;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid #0002;
+    border-collapse: collapse;
+}

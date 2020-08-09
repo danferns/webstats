@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Detailed Statistics</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="table.css">
+    </head>
+    <body>
+        <div id='container'>
+            <table id='table'>
+                <caption>Detailed statistics</caption>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Page</th>
+                    <th>Referrer</th>
+                    <th>Country</th>
+                    <th>IP Type</th>
+                </tr>
+            </table>
+        </div>
+        <script>
+            var stats = JSON.parse('statsjsondata');
+            for (i = stats.length-1; i>=0; i--){
+                displayStats(i);
+            }
+            
+            function statYear(statTime){
+                return statTime.getFullYear();
+            }
+            
+            function statMonth(statTime){
+                var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                return months[statTime.getMonth()];
+            }
+            
+            function statDate(statTime){
+                var date = statTime.getDate();
+                return date;
+            }
+            
+            function statHour(statTime){
+                var hours = statTime.getHours();
+                if (hours<10){hours = "0"+hours;}
+                return hours;
+            }
+            
+            function statMinute(statTime){
+                var minutes = statTime.getMinutes();
+                if (minutes<10){minutes = "0"+minutes;}
+                return minutes;
+            }
+            
+            function displayStats(statItem){
+                var statTime = new Date(stats[statItem].time*1000);
+                var year = statYear(statTime);
+                var month = statMonth(statTime);
+                var date = statDate(statTime);
+                var hour = statHour(statTime);
+                var minute = statMinute(statTime);
+                var page = stats[statItem].page;
+                var country = stats[statItem].country;
+                var type = stats[statItem].type+" ("+stats[statItem].ip_legit+")";
+                var referrer = "";
+                if (stats[statItem].referer != null){
+                    var referrer = stats[statItem].referer;
+                }
+                var tableStat = document.createElement("tr");
+                
+                var statDay = document.createElement("td");
+                var statTime = document.createElement("td");
+                var statPage = document.createElement("td");
+                var statReferrer = document.createElement("td");
+                var statCountry = document.createElement("td");
+                var statType = document.createElement("td");
+                
+                statDay.innerHTML = month+" "+date;
+                statTime.innerHTML = hour+":"+minute;
+                statPage.innerHTML = page;
+                statReferrer.innerHTML = referrer;
+                statCountry.innerHTML = country;
+                statType.innerHTML = type;
+                
+                tableStat.appendChild(statDay);
+                tableStat.appendChild(statTime);
+                tableStat.appendChild(statPage);
+                tableStat.appendChild(statReferrer);
+                tableStat.appendChild(statCountry);
+                tableStat.appendChild(statType);
+                
+                document.getElementById("table").appendChild(tableStat);
+            }
+        </script>
+    </body>
+</html>
