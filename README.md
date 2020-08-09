@@ -2,7 +2,7 @@
 An easy way to collect useful statistical information about web page views without any client side code.
 
 ## Features
-- Records the date and time a page was viewed, the referrer (if any), the viewer's country and whether the user is a bot or a real person (through their IP address).
+- Records the date and time at which a page was viewed, the referrer (if any), the viewer's country and whether the user is a bot or a real person (through the [IP Legit API](https://iplegit.com)).
 - You can add ```?notrack``` at the end of the URL if you want to visit your page without counting it as a view.
 - Information is displayed in a neat, responsive table.
 - Insightful charts such as the number of views during different days of the week are available in [insights](insights).
@@ -32,7 +32,7 @@ include '{$_SERVER['DOCUMENT_ROOT']}/webstats/stats.php';
 You may want to rename your index.html file to something else to be extra safe that it doesn't clash with index.php.
 
 ## Testing
-Open the page on your browser. The page's index.php file will run the code in stats.php which will record the information. To view this information, simply open the /webstats directory of your webspace. You can also open /webstats/insights for processed data.
+Open the page on your browser. The page's index.php file will run the code in stats.php which will record the stats. To view the stats, simply open the /webstats directory of your webspace. You can also open /webstats/insights for processed data.
 
 ## License
 
