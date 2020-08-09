@@ -36,7 +36,7 @@ Open the page on your browser. The page's index.php file will run the code in st
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgements
 - Special thanks to the developers of [Chart.js](https://www.chartjs.org/) for making it so easy to create beautiful and responsive charts.
