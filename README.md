@@ -12,11 +12,11 @@ An easy way to collect useful statistical information about web page views witho
 
 ## Setup
 - Download the code as a ZIP file and extract it such that these files are in a folder named 'webstats'.
-- Place the folder in the root directory of your webspace. (If you choose to upload it elsewhere, you must update the $statFilePath variable in settings.php)
+- Place the folder in the root directory of your webspace. (If you choose to upload it elsewhere, you must update the $statFilePath variable in [settings.php](settings.php))
 - Recommended: set up .htaccess password protection for this folder.
 
 ### To collect stats for a web page
-Add the following at the end of the page's index.php file:
+Add the following at the end of your page's index.php file:
 ```
 include '{$_SERVER['DOCUMENT_ROOT']}/webstats/stats.php';
 ```
